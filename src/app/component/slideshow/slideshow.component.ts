@@ -16,6 +16,8 @@ export class SlideshowComponent implements OnInit {
   timeLeft = 0;
   timer = setTimeout(() => { }, 0);
 
+  paused = false;
+
   constructor() { }
 
   ngOnInit(): void {
@@ -43,6 +45,15 @@ export class SlideshowComponent implements OnInit {
     this.changeActiveItem();
   }
 
+  pause() {
+    this.paused = !this.paused;
+    if (!this.paused) {
+      this.clockDown();
+    } else {
+      clearTimeout(this.timer);
+    }
+  }
+
   changeActiveItem() {
     this.activeItem = this.items[this.index];
     this.timeLeft = this.activeItem.duration;
@@ -51,6 +62,9 @@ export class SlideshowComponent implements OnInit {
   }
 
   clockDown() {
+    if (this.paused) {
+      return;
+    }
     this.timer = setTimeout(() => {
       if (this.timeLeft <= 0) {
         return this.next();
