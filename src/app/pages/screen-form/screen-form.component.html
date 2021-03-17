@@ -1,0 +1,16 @@
+<div class="screen-centered">
+  <form (submit)="play()" class="form-centered">
+    <div class="form-element">
+      <label for="screen_key">Enter your screen key:</label>
+      <input
+        type="text"
+        name="screen_key"
+        id="screen_key"
+        [(ngModel)]="screenKey"
+      />
+    </div>
+    <div class="form-buttons">
+      <button>Play</button>
+    </div>
+  </form>
+</div>
