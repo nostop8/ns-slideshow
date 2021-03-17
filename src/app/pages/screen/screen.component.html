@@ -1,0 +1,7 @@
+<div class="screen-centered">
+  <div class="lds-dual-ring" *ngIf="loading"></div>
+  <app-slideshow
+    *ngFor="let playlist of playlists"
+    [items]="playlist"
+  ></app-slideshow>
+</div>

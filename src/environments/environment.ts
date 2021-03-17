@@ -3,6 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
+  apiUrl: 'https://jxpjbahei2.api.quickmocker.com/ns-mock/',
+  mediaEndpoint: 'https://test.onsignage.com/PlayerBackend/creative/get/',
   production: false
 };
 

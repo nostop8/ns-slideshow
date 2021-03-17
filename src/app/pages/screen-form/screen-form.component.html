@@ -1,5 +1,5 @@
 <div class="screen-centered">
-  <form (submit)="play()" class="form-centered">
+  <form (submit)="playPromise = play()" class="form-centered">
     <div class="form-element">
       <label for="screen_key">Enter your screen key:</label>
       <input
@@ -10,7 +10,12 @@
       />
     </div>
     <div class="form-buttons">
-      <button>Play</button>
+      <button [promiseBtn]="playPromise">
+        Play
+      </button>
+    </div>
+    <div class="text-error">
+      {{ errorMessage }}
     </div>
   </form>
 </div>
