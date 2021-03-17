@@ -38,27 +38,28 @@ body {
   animation: lds-dual-ring 1.2s linear infinite;
 }
 button {
-    &.is-loading {
-        .lds-dual-ring {
-            display: inline-block;
-            width: 17px;
-            opacity: 1;
-        }
-    }
+  &.is-loading {
     .lds-dual-ring {
-        &::after {
-            content: " ";
-            display: block;
-            width: 10px;
-            height: 10px;
-            margin: 0px 6px;
-            border-width: 3px;
-        }
-        transition: 0.2s all;
-        height: 12px;
-        width: 0;
-        opacity: 0;
+      display: inline-block;
+      width: 17px;
+      opacity: 1;
     }
+  }
+  .lds-dual-ring {
+    &::after {
+      content: " ";
+      display: block;
+      width: 10px;
+      height: 10px;
+      margin: 0px 6px;
+      border-width: 3px;
+    }
+    transition: 0.2s all;
+    height: 12px;
+    width: 0;
+    opacity: 0;
+  }
+  padding: 5px 15px;
 }
 @keyframes lds-dual-ring {
   0% {

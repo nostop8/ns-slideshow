@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MediaItem } from 'src/app/classes/media-item';
 
 @Component({
@@ -6,18 +6,44 @@ import { MediaItem } from 'src/app/classes/media-item';
   templateUrl: './slideshow.component.html',
   styleUrls: ['./slideshow.component.scss']
 })
-export class SlideshowComponent implements OnInit, OnChanges {
+export class SlideshowComponent implements OnInit {
 
   @Input('items') items: MediaItem[] = [];
+
+  activeItem: MediaItem | null = null;
+
+  index = 0;
+
 
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.items);
+    if (!this.items.length) {
+      return;
+    }
+    this.changeActiveItem();
   }
-  
-  ngOnChanges() {
-    console.log(this.items);
+
+  next() {
+    if (this.index < this.items.length - 1) {
+      this.index++
+    } else {
+      this.index = 0;
+    }
+    this.changeActiveItem();
+  }
+
+  previous() {
+    if (this.index == 0) {
+      this.index = this.items.length - 1;
+    } else {
+      this.index--;
+    }
+    this.changeActiveItem();
+  }
+
+  changeActiveItem() {
+    this.activeItem = this.items[this.index];
   }
 
 }

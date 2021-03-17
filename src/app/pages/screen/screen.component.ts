@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MediaItem } from 'src/app/classes/media-item';
-import { Playlist } from 'src/app/classes/playlist';
 import { PlaylistService } from 'src/app/services/playlist.service';
 import { environment } from 'src/environments/environment';
 
@@ -35,12 +34,17 @@ export class ScreenComponent implements OnInit, OnDestroy {
     this.loading = true;
     try {
       this.playlists = (await this.playlistService.getPlaylists(key)).map(playlist => {
-        return playlist.playlistItems.map(item => {
+        const mediaItems: MediaItem[] = [];
+        playlist.playlistItems.forEach(item => {
           const mediaItem = new MediaItem;
           Object.assign(mediaItem, item);
           mediaItem.src = `${environment.mediaEndpoint}/${mediaItem.creativeKey}`;
-          return mediaItem;
+          if (!mediaItem.type) {
+            return;
+          }
+          mediaItems.push(mediaItem);
         });
+        return mediaItems;
       });
     } catch (e) {
       this.error = true;

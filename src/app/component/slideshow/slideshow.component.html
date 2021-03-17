@@ -1,11 +1,30 @@
-<ng-container *ngFor="let item of items">
-  <ng-container *ngIf="item.type == 'img'">
-    <img [src]="item.src" [alt]="item.creativeLabel" />
-  </ng-container>
-  <ng-container *ngIf="item.type != 'img'">
-    <video width="320" height="240" controls>
-      <source [src]="item.src" [type]="'video/' + item.type" />
-      Your browser does not support the video tag.
-    </video>
-  </ng-container>
-</ng-container>
+<div class="controls">
+    <button (click)="previous()">&laquo; Previous</button>
+    <button (click)="next()">Next &raquo;</button>
+</div>
+<div class="slides">
+  <div
+    class="slide"
+    [ngClass]="{ active: activeItem === item }"
+    *ngFor="let item of items"
+  >
+    <ng-container *ngIf="item.type == 'img'">
+      <img
+        [class]="'media media-' + item.type"
+        [src]="item.src"
+        [alt]="item.creativeLabel"
+      />
+    </ng-container>
+    <ng-container *ngIf="item.type == 'video'">
+      <video
+        [class]="'media media-' + item.type"
+        width="320"
+        height="240"
+        controls
+      >
+        <source [src]="item.src" [type]="'video/' + item.extension" />
+        Your browser does not support the video tag.
+      </video>
+    </ng-container>
+  </div>
+</div>
