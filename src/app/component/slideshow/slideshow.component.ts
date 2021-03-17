@@ -13,7 +13,8 @@ export class SlideshowComponent implements OnInit {
   activeItem: MediaItem | null = null;
 
   index = 0;
-
+  timeLeft = 0;
+  timer = setTimeout(() => { }, 0);
 
   constructor() { }
 
@@ -44,6 +45,19 @@ export class SlideshowComponent implements OnInit {
 
   changeActiveItem() {
     this.activeItem = this.items[this.index];
+    this.timeLeft = this.activeItem.duration;
+    clearTimeout(this.timer);
+    this.clockDown();
+  }
+
+  clockDown() {
+    this.timer = setTimeout(() => {
+      if (this.timeLeft <= 0) {
+        return this.next();
+      }
+      this.timeLeft--;
+      this.clockDown();
+    }, 1000);
   }
 
 }

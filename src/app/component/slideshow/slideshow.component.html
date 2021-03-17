@@ -1,6 +1,7 @@
-<div class="controls">
-    <button (click)="previous()">&laquo; Previous</button>
-    <button (click)="next()">Next &raquo;</button>
+<div class="controls" *ngIf="activeItem">
+  <button (click)="previous()">&laquo; Previous</button>
+  <button (click)="next()">Next &raquo;</button>
+  <div class="timer">{{ timeLeft | timeLeft }} / {{ activeItem.duration | timeLeft }}</div>
 </div>
 <div class="slides">
   <div

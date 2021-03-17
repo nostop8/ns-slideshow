@@ -10,13 +10,15 @@ import { AppComponent } from './app.component';
 import { ScreenFormComponent } from './pages/screen-form/screen-form.component';
 import { SlideshowComponent } from './component/slideshow/slideshow.component';
 import { ScreenComponent } from './pages/screen/screen.component';
+import { TimeLeftPipe } from './pipes/time-left.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     ScreenFormComponent,
     SlideshowComponent,
-    ScreenComponent
+    ScreenComponent,
+    TimeLeftPipe
   ],
   imports: [
     BrowserModule,
