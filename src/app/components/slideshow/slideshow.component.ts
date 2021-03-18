@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MediaItem } from 'src/app/classes/media-item';
+import { MediaLoaderService } from 'src/app/services/media-loader.service';
 
 @Component({
   selector: 'app-slideshow',
@@ -18,13 +19,18 @@ export class SlideshowComponent implements OnInit {
 
   paused = false;
 
-  constructor() { }
+  constructor(
+    private mediaLoader: MediaLoaderService,
+  ) { }
 
   ngOnInit(): void {
     if (!this.items.length) {
       return;
     }
-    this.changeActiveItem();
+    this.changeActiveItem(false);
+    this.mediaLoader.load(this.items[this.index]).finally(() => {
+      this.changeActiveItem(true);
+    });
   }
 
   next() {
@@ -54,8 +60,11 @@ export class SlideshowComponent implements OnInit {
     }
   }
 
-  changeActiveItem() {
+  changeActiveItem(startClock = true) {
     this.activeItem = this.items[this.index];
+    if (!startClock) {
+      return;
+    }
     this.timeLeft = this.activeItem.duration;
     clearTimeout(this.timer);
     this.clockDown();

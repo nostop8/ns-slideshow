@@ -1,16 +1,20 @@
+export type MediaTypes = 'img' | 'video' | 'unknown';
+
 export class MediaItem {
     creativeKey = '';
     creativeLabel = '';
     src = '';
     duration = 10;
+    loaded = false;
+    error = false;
 
     get extension() {
         return this.creativeKey.split('.').pop()?.toLowerCase() as string;;
     }
 
-    get type(): string | boolean {
+    get type(): MediaTypes {
         const extensionTypeMap: {
-            [key: string]: string
+            [key: string]: MediaTypes
         } = {
             jpg: 'img',
             png: 'img',
@@ -23,7 +27,7 @@ export class MediaItem {
         if (extension && extensionTypeMap[extension]) {
             return extensionTypeMap[extension];
         } else {
-            return false;
+            return 'unknown';
         }
     }
 }

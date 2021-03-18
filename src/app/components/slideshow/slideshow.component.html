@@ -1,0 +1,19 @@
+<div class="controls" *ngIf="activeItem">
+  <button (click)="previous()">&laquo; Previous</button>
+  <button (click)="pause()" class="toggle-pause">
+    {{ paused ? "Play" : "Pause" }}
+  </button>
+  <button (click)="next()">Next &raquo;</button>
+  <div class="timer">
+    {{ timeLeft | timeLeft }} / {{ activeItem.duration | timeLeft }}
+  </div>
+</div>
+<div class="slides">
+  <div
+    class="slide"
+    [ngClass]="{ active: activeItem === item }"
+    *ngFor="let item of items"
+  >
+    <app-media [item]="item"></app-media>
+  </div>
+</div>

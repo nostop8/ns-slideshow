@@ -8,9 +8,10 @@ import { Angular2PromiseButtonModule } from 'angular2-promise-buttons';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ScreenFormComponent } from './pages/screen-form/screen-form.component';
-import { SlideshowComponent } from './component/slideshow/slideshow.component';
+import { SlideshowComponent } from './components/slideshow/slideshow.component';
 import { ScreenComponent } from './pages/screen/screen.component';
 import { TimeLeftPipe } from './pipes/time-left.pipe';
+import { MediaComponent } from './components/media/media.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { TimeLeftPipe } from './pipes/time-left.pipe';
     ScreenFormComponent,
     SlideshowComponent,
     ScreenComponent,
-    TimeLeftPipe
+    TimeLeftPipe,
+    MediaComponent
   ],
   imports: [
     BrowserModule,

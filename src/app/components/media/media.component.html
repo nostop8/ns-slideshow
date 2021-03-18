@@ -1,0 +1,30 @@
+<div class="screen-centered" *ngIf="!item.loaded">
+  <div class="lds-dual-ring"></div>
+</div>
+<img
+  src="../../../assets/img/no_image_placeholder.jpg"
+  alt="Resource not available"
+  title="Resource not available"
+  [class]="'show media media-' + item.type"
+  *ngIf="item.error"
+/>
+<ng-container *ngIf="item.type == 'img'">
+  <img
+    [ngClass]="{ show: item.loaded && !item.error }"
+    [class]="'media media-' + item.type"
+    [src]="item.src"
+    [alt]="item.creativeLabel"
+  />
+</ng-container>
+<ng-container *ngIf="item.type == 'video'">
+  <video
+    [ngClass]="{ show: item.loaded && !item.error }"
+    [class]="'media media-' + item.type"
+    width="320"
+    height="240"
+    controls
+  >
+    <source [src]="item.src" [type]="'video/' + item.extension" />
+    Your browser does not support the video tag.
+  </video>
+</ng-container>

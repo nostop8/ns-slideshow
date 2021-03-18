@@ -39,8 +39,8 @@ export class ScreenComponent implements OnInit, OnDestroy {
           const mediaItem = new MediaItem;
           Object.assign(mediaItem, item);
           mediaItem.src = `${environment.mediaEndpoint}/${mediaItem.creativeKey}`;
-          if (!mediaItem.type) {
-            return;
+          if (mediaItem.type == 'unknown') {
+            // return;
           }
           mediaItems.push(mediaItem);
         });
