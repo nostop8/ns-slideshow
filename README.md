@@ -1,27 +1,20 @@
-# NsSlideshow
+# NsSlideshow description
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.4.
+This is a TEST app that creates a screen of slideshow(s) based on provided API key. 
 
-## Development server
+Currently due to the issue with CORS from the original API, I had to use a mock API [QuickMocker](https://quickmocker.com). From there I could also easily simulate multiple playlists (so you should be able to see 2 playlists on the screen currently). It could be any number of playlists on the screen depending on the data provided by API and it should scale automatically with a simple CSS.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+It is generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.4.
 
-## Code scaffolding
+## How to run the app?
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+First run `npm i`. Then run `ng serve` for a dev server. Navigate to `http://localhost:4200/`.
 
-## Build
+## TODO
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
+1. Add pre-loading of media resources on the app level
+2. Add automatic video playing
+3. Cover with unit tests
 ## Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
