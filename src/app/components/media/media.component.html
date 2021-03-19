@@ -18,11 +18,13 @@
 </ng-container>
 <ng-container *ngIf="item.type == 'video'">
   <video
+    #videoElement
     [ngClass]="{ show: item.loaded && !item.error }"
     [class]="'media media-' + item.type"
     width="320"
     height="240"
     controls
+    muted="true"
   >
     <source [src]="item.src" [type]="'video/' + item.extension" />
     Your browser does not support the video tag.

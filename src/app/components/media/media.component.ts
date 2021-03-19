@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { MediaItem } from 'src/app/classes/media-item';
 import { MediaLoaderService } from 'src/app/services/media-loader.service';
 
@@ -10,6 +10,7 @@ import { MediaLoaderService } from 'src/app/services/media-loader.service';
 export class MediaComponent implements OnInit {
 
   @Input('item') item: MediaItem = new MediaItem;
+  @ViewChild('videoElement') videoElement?: ElementRef<HTMLVideoElement>;
 
   constructor(
     private mediaLoader: MediaLoaderService,

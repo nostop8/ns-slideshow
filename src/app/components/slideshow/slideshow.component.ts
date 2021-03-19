@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { MediaItem } from 'src/app/classes/media-item';
 import { MediaLoaderService } from 'src/app/services/media-loader.service';
+import { MediaComponent } from '../media/media.component';
 
 @Component({
   selector: 'app-slideshow',
@@ -10,6 +11,8 @@ import { MediaLoaderService } from 'src/app/services/media-loader.service';
 export class SlideshowComponent implements OnInit {
 
   @Input('items') items: MediaItem[] = [];
+
+  @ViewChildren(MediaComponent) mediaComponents!: QueryList<MediaComponent>;
 
   activeItem: MediaItem | null = null;
 
@@ -53,14 +56,20 @@ export class SlideshowComponent implements OnInit {
 
   pause() {
     this.paused = !this.paused;
+    const video = this.findMediaVideo(this.activeItem);
     if (!this.paused) {
       this.clockDown();
+      video?.play();
     } else {
       clearTimeout(this.timer);
+      video?.pause();
     }
   }
 
   changeActiveItem(startClock = true) {
+    // Pause possible video.
+    this.findMediaVideo(this.activeItem)?.pause();
+
     this.activeItem = this.items[this.index];
     if (!startClock) {
       return;
@@ -68,6 +77,15 @@ export class SlideshowComponent implements OnInit {
     this.timeLeft = this.activeItem.duration;
     clearTimeout(this.timer);
     this.clockDown();
+
+    // Play possible video.
+    const videoEl = this.findMediaVideo(this.activeItem);
+    if (videoEl) {
+      videoEl.currentTime = 0;
+    }
+    if (!this.paused) {
+      videoEl?.play();
+    }
   }
 
   clockDown() {
@@ -81,6 +99,12 @@ export class SlideshowComponent implements OnInit {
       this.timeLeft--;
       this.clockDown();
     }, 1000);
+  }
+
+  findMediaVideo(media: MediaItem | null) {
+    return this.mediaComponents?.filter(mediaComponent => {
+      return mediaComponent.item === media;
+    })[0].videoElement?.nativeElement;
   }
 
 }
