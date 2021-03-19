@@ -1,0 +1,10 @@
+To support automatic updates of playlists, there are 2 options:
+
+1. Do this check regularly with AJAX call to the remote service. 
+It may be regular frequency or for instance when the playlist loop has completed.
+This is NOT the best option because the API service will receive regular requests 
+where 99% of those might not be needed simply because no data has been updated.
+
+2. Use WebSockets. This is the best option because the API will notify the clients 
+about the updates only when they are available. So there will be no pointless 
+requests to API.
