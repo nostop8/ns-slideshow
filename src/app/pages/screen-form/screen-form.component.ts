@@ -28,8 +28,8 @@ export class ScreenFormComponent implements OnInit {
       return;
     }
     try {
-      await this.playlistService.getPlaylists(this.screenKey);
-      this.router.navigate(['screen', this.screenKey]);
+      await this.playlistService.getPlaylists(this.screenKey.trim());
+      this.router.navigate(['screen', this.screenKey.trim()]);
     } catch (e) {
       this.errorMessage = "Unable to fetch data from the remote service. Please make sure you've entered a correct screen key!"
     }

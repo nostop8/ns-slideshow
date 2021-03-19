@@ -10,12 +10,20 @@
       />
     </div>
     <div class="form-buttons">
-      <button [promiseBtn]="playPromise">
-        Play
-      </button>
+      <button [promiseBtn]="playPromise">Play</button>
     </div>
-    <div class="text-error">
+    <div class="text-error info">
       {{ errorMessage }}
     </div>
+    <p>Sample keys:</p>
+    <p class="info">
+      1 playlist: <b>0f127773-529f-4ff8-b211-af9e5c22a5bc</b> (or any other
+      string because original API does not support CORS, I've used the API Mock
+      service instead).
+    </p>
+    <p class="info">
+      2 playlists:
+      <b>0f127773-529f-4ff8-b211-af9e5c22a5bd</b>
+    </p>
   </form>
 </div>
